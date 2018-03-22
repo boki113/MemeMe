@@ -12,6 +12,8 @@
 		EF4AC267206107AA001DF9D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF4AC265206107AA001DF9D0 /* Main.storyboard */; };
 		EF4AC269206107AA001DF9D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF4AC268206107AA001DF9D0 /* Assets.xcassets */; };
 		EF4AC26C206107AA001DF9D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF4AC26A206107AA001DF9D0 /* LaunchScreen.storyboard */; };
+		EF4AC275206403A0001DF9D0 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AC274206403A0001DF9D0 /* Meme.swift */; };
+		EF4AC278206404BF001DF9D0 /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4AC277206404BF001DF9D0 /* UIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		EF4AC268206107AA001DF9D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF4AC26B206107AA001DF9D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF4AC26D206107AA001DF9D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF4AC274206403A0001DF9D0 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		EF4AC277206404BF001DF9D0 /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		EF4AC260206107AA001DF9D0 /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				EF4AC27320640390001DF9D0 /* Model */,
 				EF4AC261206107AA001DF9D0 /* AppDelegate.swift */,
 				EF4AC263206107AA001DF9D0 /* ViewController.swift */,
 				EF4AC265206107AA001DF9D0 /* Main.storyboard */,
@@ -62,6 +67,23 @@
 				EF4AC26D206107AA001DF9D0 /* Info.plist */,
 			);
 			path = MemeMe;
+			sourceTree = "<group>";
+		};
+		EF4AC27320640390001DF9D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EF4AC276206404A8001DF9D0 /* Constants */,
+				EF4AC274206403A0001DF9D0 /* Meme.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EF4AC276206404A8001DF9D0 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				EF4AC277206404BF001DF9D0 /* UIConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +158,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF4AC275206403A0001DF9D0 /* Meme.swift in Sources */,
 				EF4AC264206107AA001DF9D0 /* ViewController.swift in Sources */,
 				EF4AC262206107AA001DF9D0 /* AppDelegate.swift in Sources */,
+				EF4AC278206404BF001DF9D0 /* UIConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
