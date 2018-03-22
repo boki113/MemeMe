@@ -14,6 +14,6 @@ struct UIConstants {
     static let bottom = "BOTTOM"
     static let textFieldFontName = "HelveticaNeue-CondensedBlack"
     static let photoLibraryButtonAccessibilityLabel = "AlbumButton"
-    static let strokeWidth = "4.0"
+    static let strokeWidth = "-4.0"
     static let infoPropertyOriginalImage = "UIImagePickerControllerOriginalImage"
 }

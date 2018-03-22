@@ -14,7 +14,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
-    
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -30,15 +29,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
 
         activityController.completionWithItemsHandler = {
             (activity, success, items, error) in
-            if (success && error == nil) {
+            if success {
                 self.save()
-                self.dismiss(animated: true, completion: nil)
-                
-                return
             }
             
-            //log the error
-            print("ERROR :: \(error.debugDescription)")
+            self.dismiss(animated: true, completion: nil)
             
         }
         
@@ -89,11 +84,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     // MARK: UI Logic Methods
 
-    func setShareButtonAttributes() {
+    fileprivate func setShareButtonAttributes() {
         shareButton.isEnabled = (memeImageView.image != nil)
     }
     
-    func setTextFieldAttributes() {
+    fileprivate func setTextFieldAttributes() {
         topTextField.delegate = self
         bottomTextField.delegate = self
     
@@ -108,7 +103,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     
-    func createTextFieldAttributes() -> [String:Any] {
+    fileprivate func createTextFieldAttributes() -> [String:Any] {
         let textFieldAttributes: [String:Any] = [
             NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
             NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
@@ -119,7 +114,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         return textFieldAttributes
     }
     
-    func setToolbarItemsAttributes() {
+    fileprivate func setToolbarItemsAttributes() {
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         albumButton.accessibilityLabel = UIConstants.photoLibraryButtonAccessibilityLabel
     }
@@ -129,10 +124,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         toolBar.isHidden = hide
     }
     
-    func save() -> Meme {
+    private func save() {
         let meme = Meme(originalImage: memeImageView.image, memedImage: generateMemeImage())
         
-        return meme
+        MemeAPI.shared.addMeme(meme)
+        
     }
     
     /**
@@ -158,12 +154,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     // Keyboard actions
     
-    func subscribeToKeyboardNotifications() {
+    private func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func unsubscribeFromKeyboardNotifications() {
+    private func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -177,7 +173,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         view.frame.origin.y = 0
     }
     
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+    private func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         if let userInfo = notification.userInfo {
             let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
             
