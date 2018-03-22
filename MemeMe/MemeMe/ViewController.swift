@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         activityController.completionWithItemsHandler = {
             (activity, success, items, error) in
             if (success && error == nil) {
-                save()
+                self.save()
                 self.dismiss(animated: true, completion: nil)
                 
                 return
