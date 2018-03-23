@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,18 +41,10 @@
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dAy-zD-ehK" userLabel="TopTextField">
                                 <rect key="frame" x="16" y="101" width="343" height="32"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TopTextField"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9B-Tc-pHO" userLabel="BottomTextField">
-                                <rect key="frame" x="16" y="526" width="343" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="Exb-ML-Tmi" userLabel="height = 40"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-co-KfZ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -74,11 +66,21 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9B-Tc-pHO" userLabel="BottomTextField">
+                                <rect key="frame" x="16" y="550" width="343" height="37"/>
+                                <accessibility key="accessibilityConfiguration" identifier="BottomTextField"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="Exb-ML-Tmi" userLabel="height = 40"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ycg-co-KfZ" firstAttribute="leading" secondItem="Pj1-kK-mZr" secondAttribute="leading" id="2yT-D2-4fX"/>
-                            <constraint firstItem="4aZ-xe-C7s" firstAttribute="top" secondItem="g9B-Tc-pHO" secondAttribute="bottom" constant="60" id="4W2-Mp-4us"/>
+                            <constraint firstItem="4aZ-xe-C7s" firstAttribute="top" secondItem="g9B-Tc-pHO" secondAttribute="bottom" constant="36" id="4W2-Mp-4us"/>
                             <constraint firstItem="ycg-co-KfZ" firstAttribute="bottom" secondItem="Pj1-kK-mZr" secondAttribute="top" id="8aD-J6-VM7"/>
                             <constraint firstItem="ycg-co-KfZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-20" id="92n-tu-yEe"/>
                             <constraint firstItem="ycg-co-KfZ" firstAttribute="trailing" secondItem="Pj1-kK-mZr" secondAttribute="trailing" id="BMi-br-o5O"/>

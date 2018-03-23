@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     // MARK: Properties / Outlets
     
@@ -20,6 +20,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var albumButton: UIBarButtonItem!
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     // MARK: UI Actions
     
@@ -65,7 +69,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTextFieldAttributes()
+        let textFieldAttributes: [String:Any] = createTextFieldAttributes()
+        setTextFieldAttributes(topTextField, textFieldAttributes)
+        setTextFieldAttributes(bottomTextField, textFieldAttributes)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,18 +94,18 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         shareButton.isEnabled = (memeImageView.image != nil)
     }
     
-    fileprivate func setTextFieldAttributes() {
-        topTextField.delegate = self
-        bottomTextField.delegate = self
-    
-        let textFieldAttributes: [String:Any] = createTextFieldAttributes()
-        topTextField.defaultTextAttributes = textFieldAttributes
-        bottomTextField.defaultTextAttributes = textFieldAttributes
+    fileprivate func setTextFieldAttributes(_ textField: UITextField, _ textFieldAttributes: [String:Any]) {
+        textField.delegate = self
+        textField.defaultTextAttributes = textFieldAttributes
+        textField.textAlignment = .center
         
-        topTextField.text = UIConstants.top
-        bottomTextField.text = UIConstants.bottom
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
+        if let id = textField.accessibilityIdentifier {
+            if id == "TopTextField" {
+                textField.text = UIConstants.top
+            } else {
+                textField.text = UIConstants.bottom
+            }
+        }
     }
     
     
@@ -166,7 +172,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     
     @objc func keyboardWillShow(_ notification: Notification) {
         // move view-frame up
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     @objc func keyboardWillHide(_ notification: Notification) {
@@ -202,7 +210,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if [UIConstants.top, UIConstants.bottom].contains(textField.text!) {
+            textField.text = ""
+        }
     }
 
 }
